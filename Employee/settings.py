@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'CRUDAPP'
+    'CRUDAPP',
+    'department'
 ]
 
 MIDDLEWARE = [
@@ -77,7 +78,7 @@ WSGI_APPLICATION = 'Employee.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'employee',
+        'NAME': 'testdb',
         'USER': 'rishu',
         'PASSWORD': 'rishu@123',
         'HOST': 'localhost',
