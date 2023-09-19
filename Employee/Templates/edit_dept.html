@@ -42,7 +42,8 @@
             </tr>
             <tr>
                 <td>Dob</td>
-                <td><input type="text" value="{{ department.EmpDob }}" name="EmpDob"> </td>
+                <td><input type="text
+" value="{{ department.EmpDob }}" name="EmpDob"> </td>
             </tr>
             <tr>
                 <td>Phone</td>
@@ -56,6 +57,9 @@
                 <td colspan="2" align="center"><input type="submit" class="btn btn-success"> </td>
             </tr>
         </table>
+        <p>
+            <a href={% url 'logout' %} type="button" class="btn btn-success btn-lg">logout user</a>
+        </p>
     </form>
 
 </body>

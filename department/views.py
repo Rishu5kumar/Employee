@@ -1,7 +1,10 @@
 from django.shortcuts import render,redirect
 from department.models import Department
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
+@login_required(login_url='/login')
 def insert_dept(request):
     title='Employees Department'
     if request.method=='POST':
@@ -17,11 +20,13 @@ def insert_dept(request):
     else:
         return render(request, template_name='insert_dept.html',context={'title':title})
 
+@login_required(login_url='/login')
 def show_dept(request):
     departments=Department.objects.all()
     title='Showing Department'
     return render(request,template_name='show_dept.html',context={'departments':departments,'title':title})
 
+@login_required(login_url='/login')
 def edit_dept(request,pk):
     department=Department.objects.get(id=pk)
     title='Editing Department'
@@ -32,9 +37,10 @@ def edit_dept(request,pk):
         department.EmpPhone=request.POST['EmpPhone']
         department.EmpSalary=request.POST['EmpSalary']
         department.save()
-        return redirect('show/')
+        return redirect(reverse('show-dept'))
     return render(request,template_name='edit_dept.html',context={'department':department,'title':title})
 
+@login_required(login_url='/login')
 def remove_dept(request,pk):
     title='Removing Department'
     department = Department.objects.get(id=pk)

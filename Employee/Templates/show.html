@@ -32,7 +32,8 @@
                 <th>Name</th>
                 <th>Gender</th>
                 <th>Email</th>
-                <th>Designation</th>
+                <th>Department</th>
+                 <th>Designation</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -44,12 +45,20 @@
                 <td>{{employee.EmpName}}</td>
                 <td>{{employee.EmpGender}}</td>
                 <td>{{employee.EmpEmail}}</td>
-                <td>{{employee.EmpDesignation}}</td>
+                <!--<td>{{employee.EmpDepartment}}</td>-->
+<!--                <td>{{depts}}</td>-->
+                <td>{% for dept in employee.depts %}
+                    <strong>{{dept.EmpDept}}</strong>
+                    {% endfor %}</td>
+
                 <td>
-                    <a href="/edit/{{employee.pk}}">Update</a>
+                    {{employee.designation.des_name}}
+
+                <td>
+                    <a href="{% url 'edit-emp' employee.pk %}">Update</a>
                 </td>
                 <td>
-                    <a href="/remove/{{employee.pk}}">Delete</a>
+                    <a href="{% url 'remove-emp' employee.pk %}">Delete</a>
                 </td>
             </tr>
             {% endfor %}
@@ -62,8 +71,11 @@
     </div>
 
     <p>
-        <a href="{% url 'insert-emp' %}"><-- Go To Home Page</a>
+        <a href="{% url 'insert-emp' %}"><-- Fill Employee details</a>
     </p>
+<p>
+            <a href={% url 'logout' %} type="button" class="btn btn-success btn-lg">logout user</a>
+        </p>
 </body>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

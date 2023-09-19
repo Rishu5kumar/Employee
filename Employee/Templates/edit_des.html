@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+<style>
+    table {
+        border: 8px outset;
+        border-radius: 10px;
+        border-spacing: 10px;
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    th,
+    td {
+        padding: 5px;
+    }
+</style>
+<body>
+<h2 style="text-align:center"> Update Designation </h2>
+    <form method="POST">
+        {% csrf_token %}
+        <table style="width:50%" align="center">
+
+            <tr>
+                <td>Designation Name</td>
+                <td> <input type="text" value="{{ des.des_name }}" name="des_name"> </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" class="btn btn-success"> </td>
+            </tr>
+        </table>
+        <p>
+            <a href={% url 'logout' %} type="button" class="btn btn-success btn-lg">logout user</a>
+        </p>
+    </form>
+
+</body>
+</html>

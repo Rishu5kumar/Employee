@@ -3,7 +3,7 @@
 
 <head>
     <title>{{title}}</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/my_css.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <style>
     table {
@@ -22,45 +22,75 @@
 </style>
 
 <body>
+<div class="container-fluid my-4">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="/static/images/2.jpg" alt="First slide">
+            </div>
+            <div class="carousel-item">
+                 <img class="d-block w-100" src="/static/images/img.jpeg" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="https://source.unsplash.com/1600x600/?computer" alt="Third slide">
+            </div>
+        </div>
+    </div>
+</div>
     <h2 style="text-align:center"> Enter Details of Employee </h2>
     <form method="POST">
         {% csrf_token %}
-        <table style="width:50%" align="center">
-            <tr>
-                <td>Employee Id</td>
-                <td><input type="text" placeholder="Enter Employee Id" name="EmpId"> </td>
-            </tr>
-            <tr>
-                <td>Employee Name</td>
-                <td><input type="text" placeholder="Enter Employee Name" name="EmpName" ></td>
-            </tr>
-            <tr>
-                <td>Gender</td>
-                <td><input type="radio" name="EmpGender" value="Male"> Male
-                    <input type="radio" name="EmpGender" value="Female"> Female
-                    <input type="radio" name="EmpGender" value="Other"> Other
-                </td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td><input type="email" placeholder="Enter Employee Email" name="EmpEmail">  </td>
-            </tr>
-            <tr>
-                <td>Designation</td>
-                <td><select name="EmpDesignation">
-                        <option selected disabled=true>Select Designation</option>
-                        <option> Project Manager </option>
-                        <option> Programmer </option>
-                        <option> Desktop Support Technician </option>
-                        <option> Web Developer </option>
-                        <option> Financial Advisor </option>
-                        </option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td colspan="2" align="center"><input type="submit" class="btn btn-success"> </td>
-            </tr>
-        </table>
+        {% for field in form %}
+            <div class="fieldWrapper">
+                <div class="mx-auto col-10 col-md-8 col-lg-4">
+                {{ field.errors }}<!--show all errors metioned-->
+                {{ field.label_tag }}<!-- EmpId,...-->
+                {{ field }}<!--create table-->
+                {% if field.help_text %}
+                    <p class="help">{{ field.help_text|safe }}</p>
+                {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+<!--        <table style="width:50%" align="center">-->
+<!--            <tr>-->
+<!--                <td>Employee Id</td>-->
+<!--                <td><input type="te'edit.html'xt" placeholder="Enter Employee Id" name="EmpId"> </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Employee Name</td>-->
+<!--                <td><input type="text" placeholder="Enter Employee Name" name="EmpName" ></td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Gender</td>-->
+<!--                <td><input type="radio" name="EmpGender" value="Male"> Male-->
+<!--                    <input type="radio" name="EmpGender" value="Female"> Female-->
+<!--                    <input type="radio" name="EmpGender" value="Other"> Other-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Email</td>-->
+<!--                <td><input type="email" placeholder="Enter Employee Email" name="EmpEmail">  </td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td>Designation</td>-->
+<!--                <td><select name="EmpDesignation">-->
+<!--                        <option selected disabled=true>Select Designation</option>-->
+<!--                        <option> Project Manager </option>-->
+<!--                        <option> Programmer </option>-->
+<!--                        <option> Desktop Support Technician </option>-->
+<!--                        <option> Web Developer </option>-->
+<!--                        <option> Financial Advisor </option>-->
+<!--                        </option>-->
+<!--                    </select></td>-->
+<!--            </tr>-->
+        <center>
+            <div class="form-group">
+                <input type="submit" class="btn btn-success">
+            </div>
+            </center>
+<!--            </tr>-->
+<!--        </table>-->
         <br><br>
         <div class="alert alert-danger" role="alert">
             Fill department of Employees..
@@ -68,6 +98,9 @@
 
         <p>
             <a href="{% url 'insert-dept' %}">Switch to Employee Department --></a>
+        </p>
+        <p>
+            <a href="{% url 'insert-des' %}">Go to Designation--></a>
         </p>
 
         <div class="alert alert-danger" role="alert">
@@ -77,6 +110,9 @@
 
         <p>
             <a href="{% url 'show-emp' %}">Go To Employee Information--></a>
+        </p>
+        <p>
+            <a href={% url 'logout' %} type="button" class="btn btn-success btn-lg">logout user</a>
         </p>
     </form>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
